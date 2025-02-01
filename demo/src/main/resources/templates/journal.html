@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Journal</title>
+    <link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
+	    <style>
+	        /* Container for layout */
+	        .journal-container {
+	            display: flex;
+	            justify-content: space-between;
+	            padding: 20px;
+	        }
+
+	        /* Section for the journal entry form */
+	        .journal-form {
+	            width: 40%;
+	            background-color: #f9f9f9;
+	            padding: 20px;
+	            border-radius: 8px;
+	            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	        }
+
+	        /* Section for displaying saved entries */
+	        .journal-entries {
+	            width: 50%;
+	            background-color: #ffffff;
+	            padding: 20px;
+	            border-radius: 8px;
+	            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	        }
+
+	        /* General styles */
+	        textarea {
+	            width: 75%;
+	            height: 100px;
+	            margin-bottom: 10px;
+	            border: 1px solid #ccc;
+	            border-radius: 4px;
+	            padding: 10px;
+	        }
+
+	        button {
+	            background-color: #85A98F;
+	            color: white;
+	            padding: 10px 15px;
+	            border: none;
+	            border-radius: 4px;
+	            cursor: pointer;
+	            font-size: 16px;
+	        }
+
+	        button:hover {
+	            background-color: #45a049;
+	        }
+
+	        h2 {
+	            margin-bottom: 15px;
+	            color: #333;
+	        }
+
+	        ul {
+	            list-style-type: none;
+	            padding: 0;
+	        }
+
+	        li {
+	            padding: 10px;
+	            border-bottom: 1px solid #ddd;
+	        }
+
+	        li:last-child {
+	            border-bottom: none;
+	        }
+
+	        .delete-btn {
+	            color: #d9534f;
+	            text-decoration: none;
+	            font-weight: bold;
+	            float: right;
+	        }
+
+	        .delete-btn:hover {
+	            text-decoration: underline;
+	        }
+			
+			
+			/* Back to Home button styles */
+			        .footer {
+						margin-left:130px;
+			            /*text-align: center;*/
+			            margin-top: 30px;
+			        }
+
+			        .back-to-home {
+			            display: inline-block;
+			            background-color: #85A98F;
+			            color: white;
+			            padding: 12px 24px;
+			            font-size: 16px;
+			            font-weight: bold;
+			            text-decoration: none;
+			            border-radius: 30px;
+			            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			            transition: all 0.3s ease;
+			        }
+
+			        .back-to-home:hover {
+			          /*  background-color: #0056b3; */
+			            transform: scale(1.05);
+			         /*   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);*/
+			        }
+			
+	    </style>
+</head>
+<body>
+	<div class="journal-container">
+	       <!-- Form for new journal entry -->
+	       <div class="journal-form">
+	           <h2>Vent Your Thoughts</h2>
+    <form action="/journal/add" method="post">
+		<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+        <textarea name="content" placeholder="Write your thoughts here..." required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+	</div>
+	<!-- Display saved journal entries -->
+	        <div class="journal-entries">
+	            <h2>Your Journal Entries</h2>
+	            <ul>
+	                <li th:each="journal : ${journals}">
+	                    <b>Date:</b> <span th:text="${journal.createdAt}"></span><br>
+	                    <b>Entry:</b> <span th:text="${journal.content}"></span>
+	                    <a th:href="@{/journal/delete/{id}(id=${journal.id})}" class="delete-btn">Delete</a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+		
+		<!-- Back to Home -->
+		    <div class="footer">
+		        <a href="/" class="back-to-home">Back to Home</a>
+		    </div>
+		
+		
+	</body>
+	</html>

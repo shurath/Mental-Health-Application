@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="/css/style.css">
+	
+	
+	<style>
+	       /* General Page Styling */
+	       body {
+	           font-family: Arial, sans-serif;
+	           background-color: #f4f4f9;
+	           margin: 0;
+	           padding: 0;
+	       }
+
+	       .mood-container {
+	           max-width: 800px;
+	           margin: 50px auto;
+	           padding: 20px;
+	           background-color: #ffffff;
+	           border-radius: 10px;
+	           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	       }
+
+	       h1 {
+	           text-align: center;
+	           color: #333;
+	       }
+
+	       /* Form Styles */
+	       .mood-form {
+	           display: flex;
+	           flex-direction: column;
+	           gap: 15px;
+	           margin: 20px 0;
+	       }
+
+	       .mood-form label {
+	           font-size: 16px;
+	           font-weight: bold;
+	           color: #555;
+	       }
+
+	       .mood-form select {
+	           padding: 10px;
+	           font-size: 16px;
+	           border: 1px solid #ccc;
+	           border-radius: 5px;
+	           background-color: #f9f9f9;
+	       }
+
+	       .mood-form button {
+	           background-color: #85A98F;
+	           color: white;
+	           padding: 12px;
+	           font-size: 16px;
+	           font-weight: bold;
+	           border: none;
+	           border-radius: 5px;
+	           cursor: pointer;
+	           transition: all 0.3s ease;
+	       }
+
+	       .mood-form button:hover {
+	           background-color: #45a049;
+	       }
+
+	       /* Motivational Quote Section */
+	       .quote-container {
+	           margin-top: 30px;
+	           padding: 20px;
+	           background-color: #eef9f4;
+	           border-left: 5px solid #4caf50;
+	           border-radius: 5px;
+	           font-style: italic;
+	           color: #333;
+	           font-size: 18px;
+	       }
+
+	       /* Back to Home Button */
+	       .back-to-home {
+	           display: inline-block;
+	           margin: 20px auto;
+	           text-align: center;
+	           color: white;
+	           background-color: #85A98F;
+	           padding: 10px 20px;
+	           text-decoration: none;
+	           border-radius: 5px;
+	           font-size: 16px;
+	           width: fit-content;
+	           font-weight: bold;
+	           transition: all 0.3s ease;
+	       }
+
+	       .back-to-home:hover {
+	           /*background-color: #0056b3;*/
+	       }
+	   </style>
+	
+	
+</head>
+<body>
+    <div class="mood-container">
+        <h1>Mood Tracker</h1>
+        
+        <!-- Mood Selection Form -->
+        <div class="mood-form">
+            <form action="/mood/add" method="post">
+				
+                <label for="mood">How are you feeling today?</label>
+                <select name="mood" id="mood" required>
+					<option value="happy" th:selected="${mood == 'happy'}">Happy</option>
+					                    <option value="sad" th:selected="${mood == 'sad'}">Sad</option>
+					                    <option value="stressed" th:selected="${mood == 'stressed'}">Stressed</option>
+                </select>
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+        <!-- Motivational Quote Display -->
+        <div class="quote-container">
+            <h2>Motivational Quote:</h2>
+            <p th:text="${quote}">Your motivational quote will appear here!</p>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="/" class="back-to-home">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

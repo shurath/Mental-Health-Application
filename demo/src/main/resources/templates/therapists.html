@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Find Therapists</title>
+    <link rel="stylesheet" href="/css/style.css">
+	
+	<style>
+	        table {
+	            width: 100%;
+	            border-collapse: collapse;
+	        }
+
+	        th, td {
+	            padding: 10px;
+	            text-align: left;
+	            border: 1px solid #ddd;
+	        }
+
+	        th {
+	            background-color: #f2f2f2;
+	        }
+
+	        .back-to-home {
+	            margin-top: 20px;
+	            text-align: center;
+	        }
+
+	        .back-to-home a {
+	            text-decoration: none;
+	            background-color: #007bff;
+	            color: white;
+	            padding: 10px 20px;
+	            border-radius: 5px;
+	        }
+
+	        .back-to-home a:hover {
+	            background-color: #0056b3;
+	        }
+
+	        .book-button a {
+	            text-decoration: none;
+	            background-color: #4caf50;
+	            color: white;
+	            padding: 5px 10px;
+	            border-radius: 3px;
+	        }
+
+	        .book-button a:hover {
+	            background-color: #45a049;
+	        }
+	    </style>
+</head>
+<body>
+	 <header>
+	        <div class="container">
+	            <h1>Mental Health App</h1>
+	        </div>
+	    </header>
+
+	    <main>
+	        <section class="therapist-section">
+	            <h2>Find Your Therapist</h2>
+	            <table>
+	                <thead>
+	                    <tr>
+	                        <th>Name</th>
+	                        <th>Phone</th>
+	                        <th>Location</th>
+	                        <th>Fee</th>
+	                        <th>Discount</th>
+	                        <th>Book</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr th:each="therapist : ${therapists}">
+							
+	                        <td th:text="${therapist.name}"></td>
+	                        <td th:text="${therapist.phone}"></td>
+	                        <td th:text="${therapist.location}"></td>
+	                        <td th:text="${therapist.fee}"></td>
+	                        <td th:text="${therapist.discount}"></td>
+	                        <td class="book-button">
+	                            <a href="https://example.com/book" target="_blank">Book</a>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </section>
+	    </main>
+
+	    <footer>
+	        <div class="back-to-home">
+	            <a href="/">Back to Home</a>
+	        </div>
+	        <p>© 2024 Mental Health App. All Rights Reserved.</p>
+	    </footer>
+	</body>
+</html>

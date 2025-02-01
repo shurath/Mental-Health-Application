@@ -1,0 +1,34 @@
+spring.application.name=demo
+
+# Add this if needed for package scanning
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/mental_health_app
+spring.datasource.username=root
+spring.datasource.password=shubhra1234
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# Package scanning to ensure correct entity classes are detected
+spring.jpa.packages-to-scan=com.example.demo.entity
+
+logging.level.org.springframework.security=DEBUG
+
+
+
+
+# Hibernate properties
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+server.port=8081
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+
+
+# Hibernate Configuration
+
+
+
+
